@@ -12,6 +12,11 @@ namespace HelloWorld
 		NfcAdapter nfc;
 		NfcReaderCallback readerCallback = new NfcReaderCallback();
 
+		public MainActivity()
+		{
+			readerCallback.TagDiscovered += TagDiscovered;
+		}
+
 		protected override void OnCreate (Bundle savedInstanceState)
 		{
 			base.OnCreate (savedInstanceState);
@@ -26,8 +31,6 @@ namespace HelloWorld
 			try
 			{
 				nfc = NfcAdapter.GetDefaultAdapter (this);
-
-				readerCallback.TagDiscovered += TagDiscovered;
 
 				//			NfcReaderFlags flags = NfcReaderFlags.NfcA | NfcReaderFlags.NfcB | NfcReaderFlags.NfcBarcode | NfcReaderFlags.NfcF | NfcReaderFlags.NfcV | NfcReaderFlags.SkipNdefCheck;
 				NfcReaderFlags flags = NfcReaderFlags.NfcA | NfcReaderFlags.SkipNdefCheck;
